@@ -8,6 +8,7 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -24,74 +25,57 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import HalfModal from 'rn-half-modal';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode ? Colors.lighter : Colors.dark,
   };
+  const [isHalfModalVisible, setHalfModalVisible] = React.useState(false);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={{flexGrow: 1, backgroundColor: 'white'}}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={isDarkMode ? 'dark-content' : 'light-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+
+      <Button
+        onPress={() => setHalfModalVisible(!isHalfModalVisible)}
+        title="Open Modal"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
+      <HalfModal
+        modalVisible={isHalfModalVisible}
+        setModalVisible={setHalfModalVisible}
+        // modalHeight={200}
+        // dragIconStyle={{
+        //   width: 80,
+        //   height: 20,
+        // }}
+        // children={
+        //<ScrollView
+        // contentContainerStyle={{
+        //  backgroundColor: 'red',
+        // flexGrow: 1,
+        //   paddingHorizontal: scale(5),
+        // }}>
+        //</SafeAreaView> <Text>askjndkakjdjnqjdqwnqwndwqd ndqowd wn</Text>
+        // </ScrollView>
+        // }
+      >
+        <ScrollView
+          contentContainerStyle={{
+            // backgroundColor: 'red',
+            // flexGrow: 1,
+            paddingHorizontal: 5,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+          <Text>This is half modal</Text>
+        </ScrollView>
+      </HalfModal>
     </SafeAreaView>
   );
 }
