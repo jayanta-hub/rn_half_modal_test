@@ -25,8 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import HalfModal from 'rn-half-modal';
-
+import HalfModal from './src/Component/HalfModal';
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -69,11 +68,11 @@ function App(): JSX.Element {
       >
         <ScrollView
           contentContainerStyle={{
+            flexGrow: 1,
+            // paddingHorizontal: 5,
             // backgroundColor: 'red',
-            // flexGrow: 1,
-            paddingHorizontal: 5,
           }}>
-          <Text>This is half modal</Text>
+          {/* <Text>This is half modal</Text> */}
         </ScrollView>
       </HalfModal>
     </SafeAreaView>

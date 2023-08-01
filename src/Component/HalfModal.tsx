@@ -7,6 +7,7 @@ import {
   Dimensions,
   Modal,
   TouchableOpacity,
+  Text,
 } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -24,7 +25,7 @@ interface HalfModalProps {
 }
 
 const HalfModal: React.FC<HalfModalProps> = ({
-  modalVisible,
+  modalVisible = false,
   children,
   minHeight = 60,
   modalHeight = SCREEN_HEIGHT / 2,
@@ -34,9 +35,7 @@ const HalfModal: React.FC<HalfModalProps> = ({
   modalBackgroundColor = 'white',
   setModalVisible = () => {},
 }) => {
-  const modalHeightValue = useRef<Animated.Value>(
-    new Animated.Value(modalHeight),
-  ).current;
+  const modalHeightValue = useRef(new Animated.Value(modalHeight)).current;
 
   const panResponder = useRef(
     PanResponder.create({
@@ -57,6 +56,13 @@ const HalfModal: React.FC<HalfModalProps> = ({
       },
     }),
   ).current;
+  /**
+   * ? For reset the value start
+   */
+  !modalVisible && modalHeightValue.setValue(modalHeight);
+  /**
+   * ? For reset the value end
+   */
 
   return (
     <Modal
@@ -71,10 +77,9 @@ const HalfModal: React.FC<HalfModalProps> = ({
           flex: 1,
           justifyContent: 'flex-end',
           alignItems: 'center',
-          marginTop: 22,
         }}>
         <TouchableOpacity
-          style={styles.background}
+          style={{...styles.background}}
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
@@ -113,6 +118,7 @@ const HalfModal: React.FC<HalfModalProps> = ({
             padding: 10,
           }}>
           {children}
+          <Text>asass</Text>
         </Animated.View>
       </View>
     </Modal>
@@ -126,6 +132,8 @@ const styles = StyleSheet.create({
   },
   background: {
     ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#000',
+    opacity: 0.3,
     position: 'absolute',
     bottom: 0,
     left: 0,
