@@ -25,7 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import HalfModal from './src/Component/HalfModal';
+
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -47,7 +47,7 @@ function App(): JSX.Element {
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
-      <HalfModal
+      <DraggableModal
         modalVisible={isHalfModalVisible}
         setModalVisible={setHalfModalVisible}
         dragIconName="dots"
@@ -95,7 +95,7 @@ function App(): JSX.Element {
           }}>
           {/* <Text>This is half modal</Text> */}
         </ScrollView>
-      </HalfModal>
+      </DraggableModal>
     </SafeAreaView>
   );
 }
