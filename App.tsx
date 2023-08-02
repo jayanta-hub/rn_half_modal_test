@@ -25,7 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import DraggableModal from 'rn-draggable-modal';
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
