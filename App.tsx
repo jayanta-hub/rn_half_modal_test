@@ -50,7 +50,28 @@ function App(): JSX.Element {
       <HalfModal
         modalVisible={isHalfModalVisible}
         setModalVisible={setHalfModalVisible}
-        // modalHeight={200}
+        dragIconName="dots"
+        // modalWidth="80%"
+        modalInitialHeight={200}
+        // hasDraggable={false}
+        dragIconColor="skyblue"
+        // numberOfDots={5}
+
+        // hasDraggableIcon={false}
+        // dragIconStyle={{
+        //   //bar style
+        //   backgroundColor: 'green',
+        //   width: 40,
+        //   height: 6,
+        //   borderRadius: 3,
+        // }}
+        // dragIconStyle={{    //dots style
+        //   backgroundColor: 'green',
+        //   width: 8,
+        //   height: 8,
+        //   borderRadius: 4,
+        //   marginHorizontal: 3,
+        // }}
         // dragIconStyle={{
         //   width: 80,
         //   height: 20,
@@ -78,24 +99,5 @@ function App(): JSX.Element {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
